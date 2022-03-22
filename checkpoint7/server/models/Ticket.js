@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-export const GuestSchema = new Schema(
+export const TicketSchema = new Schema(
   {
    eventId: {type: Schema.Types.ObjectId, ref: 'TowerEvent', required: true},
     accountId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
@@ -9,14 +9,14 @@ export const GuestSchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
-GuestSchema.virtual('account', {
+TicketSchema.virtual('account', {
   localField: 'accountId',
   foreignField: '_id',
   justOne: true,
   ref: 'Profile'
 })
 
-GuestSchema.virtual('event', {
+TicketSchema.virtual('event', {
   localField: 'eventId',
   foreignField: '_id',
   justOne: true,

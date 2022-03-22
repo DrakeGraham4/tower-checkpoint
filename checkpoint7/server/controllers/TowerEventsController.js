@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { commentsService } from "../services/CommentsService";
+import { ticketsService } from "../services/TicktetsService";
 import {  towerEventsService } from "../services/TowerEventsService";
 import BaseController from "../utils/BaseController";
 export class TowerEventsController extends BaseController{
@@ -15,7 +16,7 @@ export class TowerEventsController extends BaseController{
             .delete('/:id', this.removeEvent)
         
     }
-    async create(req,res, next) {
+    async create(req, res, next) {
         try {
             req.body.creatorId = req.userInfo.id
             const towerEvent = await towerEventsService.create(req.body)
@@ -70,5 +71,7 @@ export class TowerEventsController extends BaseController{
             next(error)
         }
     }
+
+    
 
 }

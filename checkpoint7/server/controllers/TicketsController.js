@@ -1,8 +1,8 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
-import { guestsService } from "../services/GuestsService";
+import { ticketsService } from "../services/TicktetsService";
 import BaseController from "../utils/BaseController";
 
-export class GuestsController extends BaseController{
+export class TicketsController extends BaseController{
     constructor() {
         super('api/tickets')
         this.router
@@ -13,7 +13,7 @@ export class GuestsController extends BaseController{
     async create(req, res, next) {
         try {
             req.body.accountId = req.userInfo.id
-            const ticket = await guestsService.create(req.body)
+            const ticket = await ticketsService.create(req.body)
             return res.send(ticket)
         } catch (error) {
             next(error)
