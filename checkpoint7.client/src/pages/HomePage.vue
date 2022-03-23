@@ -8,6 +8,12 @@
           >
             Create Event
           </button>
+          <button
+            @click="filterEvents('sport')"
+            class="btn btn-info "
+          >
+            Sport
+          </button>
         </div>
         <Modal id="create-event">
             <template #title>Create Event</template>
@@ -21,7 +27,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref } from '@vue/runtime-core'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import {towerEventsService} from '../services/TowerEventsService'
@@ -29,6 +35,7 @@ import { AppState } from '../AppState'
 export default {
   name: 'Home',
   setup(){
+    let editable = ref(null)
     onMounted( async() => {
       try {
         await towerEventsService.getAll()
